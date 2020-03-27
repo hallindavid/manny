@@ -14,7 +14,7 @@ class MannyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Manny', function() {
+        $this->app->singleton('manny', function() {
             return $this->app->make('Hallindavid\Manny\Manny');
         });
     }
@@ -26,6 +26,6 @@ class MannyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+
     }
 }

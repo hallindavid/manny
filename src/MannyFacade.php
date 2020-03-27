@@ -1,6 +1,6 @@
 <?php
 	
-	namespace Hallindavid\MannyHelper;
+	namespace Hallindavid\Manny;
 	use Illuminate\Support\Facades\Facade;
 
 	class MannyFacade extends Facade {
