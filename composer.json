@@ -1,0 +1,56 @@
+{
+    "name": "hallindavid/manny",
+    "description": "a package of maniulators that hopefully come in useful for those of us who always forget regex when we need it (manny is short for manipulation)",
+    "keywords": [
+        "string", 
+        "manipulation",
+        "trim",
+        "regex",
+        "format",
+        "formatter",
+        "number",
+        "laravel"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Hallin",
+            "email": "hallin.david@gmail.com",
+            "homepage":"https://davidhallin.com",
+            "role":"Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0|^9.0",
+        "orchestra/testbench": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hallindavid\\Manny\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hallindavid\\Manny\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --testdox"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hallindavid\\Manny\\MannyServiceProvider"
+            ],
+            "aliases": {
+                "Manny": "Hallindavid\\Manny\\MannyFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
