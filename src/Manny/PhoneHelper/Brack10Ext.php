@@ -4,20 +4,20 @@ namespace Manny\PhoneHelper;
 
 use Manny\Phone;
 
-class Brack10Ext extends Phone {
-    
-    function __construct($text) {
+class Brack10Ext extends Phone
+{
+    public function __construct($text)
+    {
         parent::__construct($text);
-        $this->showCountryCode = false;						
-		$this->showAreaCode = true;
-		$this->showExchange = true;
-		$this->showLine = true;
-		$this->showExtension = true;
-		$this->prefix = false;
-		$this->country_area_delimiter = '(';
-		$this->area_exchange_delimiter = ') ';
-		$this->exchange_line_delimiter = '-';
-		$this->line_extension_delimiter = ' ext. ';
-        
+        $this->showCountryCode = false;
+        $this->showAreaCode = true;
+        $this->showExchange = true;
+        $this->showLine = true;
+        $this->showExtension = true;
+        $this->prefix = false;
+        $this->country_area_delimiter = '(';
+        $this->area_exchange_delimiter = ') ';
+        $this->exchange_line_delimiter = '-';
+        $this->line_extension_delimiter = ' ext. ';
     }
 }
