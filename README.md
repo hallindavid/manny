@@ -1,4 +1,4 @@
-![hallindavid](https://circleci.com/gh/hallindavid/Manny.svg?style=svg)
+![hallindavid](https://circleci.com/gh/hallindavid/manny.svg?style=svg)
 
 # Manny
 
@@ -10,7 +10,7 @@ a package of maniulators and formatters that hopefully come in useful for those 
 composer require hallindavid/manny
 ```
 
-Laravel should autodiscover the Provider & Alias.
+Laravel should autodiscover the Alias.
 
 You should now be able to use the Manny alias
 
