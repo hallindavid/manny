@@ -39,22 +39,35 @@ class Mask
 
     public function mask()
     {
+        $nums = [];
+        $alphas = [];
 
-        $nums = str_split(Manny::stripper($this->target, ['num']));
-        $alphas = str_split(Manny::stripper($this->target, ['alpha']));
+        $nums_in_target = Manny::stripper($this->target, ['num']);
+        $alphas_in_target = Manny::stripper($this->target, ['alpha']);
 
+        if (strlen($nums_in_target) > 0) {
+            $nums = str_split($nums_in_target);
+        }
+
+        if (strlen($alphas_in_target) > 0) {
+            $alphas = str_split($alphas_in_target);
+        }
+        
         $output = [];
-        if (strlen($this->target) > 0) {
+
+        if (strlen(Manny::stripper($this->target, ['num','alpha'])) > 0) {
             foreach (str_split($this->pattern) as $char) {
                 if ($char === 'A') {
                     //this means we want to take the first element that's left in our alphas array and append it to output.
                     if (count($alphas) == 0) {
                         break;
+                        //just end the flow altogether - we're done here.
                     }
-                    $output[] = array_shift($alphas);
+                    $output[] = array_shift($alphas);   
                 } elseif ($char === '1') {
                     if (count($nums) == 0) {
                         break;
+                        //just end the flow altogether - we're done here.
                     }
                     $output[] = array_shift($nums);
                 } else {
