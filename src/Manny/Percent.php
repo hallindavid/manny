@@ -3,7 +3,7 @@
 namespace Manny;
 
 /**
- * Percent is a bit opinionated. 
+ * Percent is a bit opinionated.
  * When using invalid parameters, it will still generate a result.
  * it also doesn't allow percents over 100%, and assumes that 0/0 is 100%.
  */
@@ -29,10 +29,9 @@ class Percent
             } else {
                 return 100;
             }
-        } 
+        }
 
         //this is where we're a opinionated.
         return 100;
-
     }
 }
