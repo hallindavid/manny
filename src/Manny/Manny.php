@@ -30,7 +30,7 @@ class Manny
         return (new Mask($target, $pattern))->mask();
     }
 
-    public static function percent($num, $denom, $precision=0)
+    public static function percent($num, $denom, $precision = 0)
     {
         return (new Percent($num, $denom, $precision))->percent();
     }
