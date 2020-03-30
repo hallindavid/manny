@@ -52,10 +52,10 @@ class Mask
         if (strlen($alphas_in_target) > 0) {
             $alphas = str_split($alphas_in_target);
         }
-        
+
         $output = [];
 
-        if (strlen(Manny::stripper($this->target, ['num','alpha'])) > 0) {
+        if (strlen(Manny::stripper($this->target, ['num', 'alpha'])) > 0) {
             foreach (str_split($this->pattern) as $char) {
                 if ($char === 'A') {
                     //this means we want to take the first element that's left in our alphas array and append it to output.
@@ -63,7 +63,7 @@ class Mask
                         break;
                         //just end the flow altogether - we're done here.
                     }
-                    $output[] = array_shift($alphas);   
+                    $output[] = array_shift($alphas);
                 } elseif ($char === '1') {
                     if (count($nums) == 0) {
                         break;
