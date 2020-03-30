@@ -43,7 +43,6 @@ class MaskTest extends TestCase
         $this->assertEquals(Manny::mask($target, $config), $good);
     }
 
-
     public function test_blank_entry_with_phone_formatting_mask()
     {
         $target = '';

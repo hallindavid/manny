@@ -49,15 +49,16 @@ class Stripper
         }
 
         //check that stripper has atleast one option in the array
-        if (!(  in_array('alpha', $options) ||
+        if (!(
+            in_array('alpha', $options) ||
                 in_array('num', $options) ||
                 in_array('comma', $options) ||
                 in_array('dot', $options) ||
                 in_array('space', $options) ||
                 in_array('dash', $options)
-            )) {
-                throw new \InvalidArgumentException("strip function requires atleast one option");
-            }
+        )) {
+            throw new \InvalidArgumentException('strip function requires atleast one option');
+        }
 
         $this->text = $text;
         $this->options = $options;
@@ -70,13 +71,13 @@ class Stripper
 
     private function getRegExString()
     {
-        return "/[^"
-                    .(in_array('alpha', $this->options) ? "a-zA-Z" : "")
-                    .(in_array('num', $this->options) ? "0-9" : "")
-                    .(in_array('comma', $this->options) ? "," : "")
-                    .(in_array('dot', $this->options) ? "\." : "")
-                    .(in_array('dash', $this->options) ? "\-" : "")
-                    .(in_array('space', $this->options) ? " " : "")
-                ."]/";
+        return '/[^'
+                    .(in_array('alpha', $this->options) ? 'a-zA-Z' : '')
+                    .(in_array('num', $this->options) ? '0-9' : '')
+                    .(in_array('comma', $this->options) ? ',' : '')
+                    .(in_array('dot', $this->options) ? "\." : '')
+                    .(in_array('dash', $this->options) ? "\-" : '')
+                    .(in_array('space', $this->options) ? ' ' : '')
+                .']/';
     }
 }
