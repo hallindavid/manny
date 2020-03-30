@@ -39,7 +39,6 @@ class Mask
 
     public function mask()
     {
-
         $nums = str_split(Manny::stripper($this->target, ['num']));
         $alphas = str_split(Manny::stripper($this->target, ['alpha']));
 
