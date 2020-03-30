@@ -1,45 +1,198 @@
 ![hallindavid](https://circleci.com/gh/hallindavid/manny.svg?style=svg)
 
-# Manny
+# Manny (Short for Manipulators)
+a light-weight PHP package of useful common manipulators/formatters.
 
-a package of maniulators and formatters that hopefully come in useful for those of us who always forget regex when we need it (manny is short for manipulation)
-
-## Getting Started / Installation
-
-```
+## Installation with Composer
+```sh
 composer require hallindavid/manny
 ```
 
-Laravel should autodiscover the Alias.
-
-You should now be able to use the Manny alias
-
-eg:
-```
-Manny::percent(1,4) //produces 25 by default
-```
-
-
-## Usage
-
-For basic usage, you can use the alias `Manny` and the format function
-```
-
+if using Laravel, the Manny alias should be autodiscovered and usable easily like this.
+```php
 use Manny;
 
-class TestController extends Controller
-{
-    public function index() {
-        $percent = Manny::percent(1,4);
-    }
-}
+Manny::phone("8008008000"); // Returns: 800-800-8000
 ```
 
-## Manipulators
+for other frameworks, you will likely need to do
+```php
+require_once "vendor/autoload.php"
+use Manny;
 
-Manny comes with these manipulators
+Manny::phone("8008008000"); // Returns: 800-800-8000
 
+```
 
+### Manny::phone
+Manny::phone - a Canada/US phone formatter - rebuilt better than before from <a target="_blank()" href="https://github.com/hallindavid/phonehelper">hallindavid/phonehelper</a>
+**Definition**
+```php
+
+/**
+* @param string $number
+* @param array $options
+*
+*
+* Default Options
+*
+*    $default_options = [
+*        'showCountryCode'         => false,
+*        'showAreaCode'            => true,
+*        'showExchange'            => true,
+*        'showLine'                => true,
+*        'showExtension'           => false,
+*        'prefix'                  => false,
+*        'country_area_delimiter'  => false,
+*        'area_exchange_delimiter' => '-',
+*        'exchange_line_delimiter' => '-',
+*        'line_extension_delimiter'=> ' ext. ',
+*    ];
+* @return string
+*/
+function phone($number, $options)
+```
+**Example**
+```php
+Manny::phone("8008008000"); 
+//outputs 800-800-8000
+```
+**Extending Manny::phone**
+
+It's pretty easy to extend the phone class - here is an example
+```php
+class Brack10 extends Manny\Phone
+{
+    public function __construct($text)
+    {
+        parent::__construct($text);
+        $this->showCountryCode = false;
+        $this->showAreaCode = true;
+        $this->showExchange = true;
+        $this->showLine = true;
+        $this->showExtension = false;
+        $this->prefix = false;
+        $this->country_area_delimiter = '(';
+        $this->area_exchange_delimiter = ') ';
+        $this->exchange_line_delimiter = '-';
+        $this->line_extension_delimiter = ' ext. ';
+    }
+}
+
+$phone = new Brack10("123456789123456");
+$phone->format();
+//Returns: (234) 567-8912
+```
+
+### Manny::mask
+A mask function for formatting fixed-length data.  (great for real-time-masking with <a target="_blank()" href="https://github.com/livewire/livewire">livewire/livewire</a>)
+
+**Definition**
+```php
+/**
+ * @param string $target
+ * @param string $pattern
+ * @return string
+ */
+function mask($target, $pattern)
+```
+**Pattern creation**
+
+`A` should be a placeholder for an alphabetical character<br />
+`1` should be a placeholder for a numeric character<br />
+all other characters are treated as formatting characters
+
+**Example**
+```php
+//US Social Security Number
+Manny::mask("987654321", "111-11-1111"); //returns "987-65-4321"
+
+//US Zip-code
+Manny::mask("The whitehouse zip code is: 20500", "11111"); //returns "20500"
+
+//Canada Postal Code
+Manny::mask("K1M1M4", "A1A 1A1"); //
+
+//outputs 987-65-4321
+```
+
+### Manny::yoink
+use yoink to pull specific key-values from an associative array, and (optionally) pass in defaults.
+
+**Definition**
+```php
+/**
+ * @param array $target - should be key-val associative array
+ * @param array $elements - should flat array with key names
+ * @param array $defaults (optional) - key-val associative array which will be appended to extracted key-value pairs before returning
+ * @return array
+ */
+function yoink($target, $elements, $defaults = null)
+```
+**Example**
+```php
+$array = ['id'  => '17', 'name'=> 'John Doe'];
+$elements = ['name', 'role'];
+$default_values = ['role'=> 'member'];
+Manny::yoink($array, $elements, $default_values);  //Returns: ['name'=>'John Doe','role'=>'member'] ;
+```
+
+### Manny::stripper
+a preg_replace abstraction easy-to-remember parameters to reduce frequent googling
+
+**Definition**
+```php
+    /**
+     * @param string     $text    - the subject of our stripping
+     * @param array|null $options - an array with the return types you'd like
+     *      keys can include the following types
+     *      alpha - keep the alphabetical characters (case insensitive)
+     * 		num - keep the digits (0-9)
+     *  	comma - keep commas
+     *  	dot - keep periods
+     * 		dash - keep dashes/hyphens
+     *  	space - keep spaces* 
+     * 
+     * @return string
+     */
+    function stripper($text, $options = null)
+```
+**Example**
+```php
+$string = 'With only 5-10 hours of development, Dave built Manny, saving him atleast 10 seconds per day!';
+$config = ['num', 'alpha', 'space'];
+Manny::stripper($string,$config); 
+//Returns: 'With only 510 hours of development Dave built Manny saving him atleast 10 seconds per day';
+
+$alt_config = ['num'];
+Manny::stripper($string,$alt_config); 
+//Returns: '51010';
+```
+
+### Manny::crumble
+a preg_replace abstraction easy-to-remember parameters to reduce frequent googling
+
+**Definition**
+```php
+    /**
+     * @param string $text - the subject of our crumbling
+     * @param array $crumbs - an array of positive integers
+     * @param bool $appendExtra - keys can include the following types
+     * 
+     * @return array
+     */
+    function crumble($string, $crumbs, $appendExtra = false)
+    
+```
+**Example**
+```php
+Manny::crumble("18008008000888", [1,3,3,4])
+//Output: ["1","800","800","8000"];
+
+//with append extra
+Manny::crumble("18008008000888", [1,3,3,4],true)
+//Output: ["1","800","800","8000", "888"];
+```
 
 ## Testing
 There are a tonne of tests for the packaged formats - to run them, pull the package then

@@ -5,7 +5,7 @@ namespace Manny;
 /**
  * Crumble will take a string and returns an array of strings.
  * eg. Manny::crumble("18008008000888", [1,3,3,4])
- * //Output: ["1","800","800","8000","888"];.
+ * //Output: ["1","800","800","8000"];.
  */
 class Crumble
 {
