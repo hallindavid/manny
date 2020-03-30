@@ -43,9 +43,21 @@ class Stripper
             throw new \InvalidArgumentException('Stripper expects a string');
         }
         if (is_null($options)) {
-            $options = $this->defaults;
+            $options = ['alpha', 'num', 'comma', 'dot', 'space', 'dash'];
         } elseif (!is_array($options)) {
             throw new \InvalidArgumentException('Stripper Options must be an array or NULL');
+        }
+
+        //check that stripper has atleast one option in the array
+        if (!(
+            in_array('alpha', $options) ||
+                in_array('num', $options) ||
+                in_array('comma', $options) ||
+                in_array('dot', $options) ||
+                in_array('space', $options) ||
+                in_array('dash', $options)
+        )) {
+            throw new \InvalidArgumentException('strip function requires atleast one option');
         }
 
         $this->text = $text;

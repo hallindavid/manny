@@ -25,6 +25,15 @@ class MaskTest extends TestCase
         $this->assertEquals(Manny::mask($target, $config), $good);
     }
 
+    public function test_partial_canadian_postal_code()
+    {
+        $target = 'KM';
+        $config = 'A1A 1A1';
+        $good = 'K';
+
+        $this->assertEquals($good, Manny::mask($target, $config));
+    }
+
     public function test_phone_mask()
     {
         $target = '8008008000';
@@ -33,7 +42,6 @@ class MaskTest extends TestCase
 
         $this->assertEquals(Manny::mask($target, $config), $good);
     }
-
 
     public function test_blank_entry_with_phone_formatting_mask()
     {
