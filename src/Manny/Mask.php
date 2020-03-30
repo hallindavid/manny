@@ -3,16 +3,16 @@
 namespace Manny;
 
 /**
- * Bake takes care of masking common fixed-length, alpha-numeric patterns for you.
+ * Mask takes care of masking common fixed-length, alpha-numeric patterns for you.
  * Examples:.
  *
  * //US Social Security Number
- * Manny::bake("123456789", "111-11-1111"); //Outputs: 123-45-6789
+ * Manny::mask("123456789", "111-11-1111"); //Outputs: 123-45-6789
  * //Canadian Social Insurance Number
- * Manny::bake("989787676", "111-111-111") //Outputs: "989-787-676"
+ * Manny::mask("989787676", "111-111-111") //Outputs: "989-787-676"
  *
  * //Canadian Postal Code
- * Manny::bake("K1M1M4", "A1A 1A1"); //Outputs: "K1M 1M4"
+ * Manny::mask("K1M1M4", "A1A 1A1"); //Outputs: "K1M 1M4"
  *
  * //Also great for phone numbers if you don't care about the trailing space - like the extension
  * Manny::mask('8008008000', "(111) 111-1111"); //Outputs: "(800) 800-8000"

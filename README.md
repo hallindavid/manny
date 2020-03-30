@@ -19,13 +19,12 @@ for other frameworks, you will likely need to do
 ```php
 require_once "vendor/autoload.php"
 use Manny;
-
 Manny::phone("8008008000"); // Returns: 800-800-8000
-
 ```
 
 ### Manny::phone
 Manny::phone - a Canada/US phone formatter - rebuilt better than before from <a target="_blank()" href="https://github.com/hallindavid/phonehelper">hallindavid/phonehelper</a>
+
 **Definition**
 ```php
 
@@ -123,7 +122,7 @@ use yoink to pull specific key-values from an associative array, and (optionally
 ```php
 /**
  * @param array $target - should be key-val associative array
- * @param array $elements - should flat array with key names
+ * @param array $elements - should be flat array with desired key names from target array
  * @param array $defaults (optional) - key-val associative array which will be appended to extracted key-value pairs before returning
  * @return array
  */
@@ -192,6 +191,27 @@ Manny::crumble("18008008000888", [1,3,3,4])
 //with append extra
 Manny::crumble("18008008000888", [1,3,3,4],true)
 //Output: ["1","800","800","8000", "888"];
+```
+
+### Manny::percent
+This is a quick-use tool for generating percents.  It cleans up bad data before processing, and has an opinionated workflow (eg. 0/0 = 100%)
+
+**Definition**
+```php
+    /**
+     * @param int|float|string $num - the numerator
+     * @param int|float|string $denom - the denominator
+     * @param int $precision - keys can include the following types
+     * 
+     * @return float
+     */
+    function percent($num, $denom, $precision = 0)
+    
+```
+**Example**
+```php
+Manny::percent(1,8);
+//Output: 12.5;
 ```
 
 ## Testing
