@@ -26,10 +26,10 @@ class Mask
 
     public function __construct($target, $pattern)
     {
-        if (!is_string($target)) {
+        if (! is_string($target)) {
             throw new \InvalidArgumentException('Mask target expected to be string');
         }
-        if (!is_string($pattern)) {
+        if (! is_string($pattern)) {
             throw new \InvalidArgumentException('Mask pattern expected to be string');
         }
 
@@ -71,6 +71,9 @@ class Mask
                     }
                     $output[] = array_shift($nums);
                 } else {
+                    if (count($alphas) == 0 && count($nums) == 0) {
+                        break;
+                    }
                     $output[] = $char;
                 }
             }
