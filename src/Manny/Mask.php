@@ -26,10 +26,10 @@ class Mask
 
     public function __construct($target, $pattern)
     {
-        if (! is_string($target)) {
+        if (!is_string($target)) {
             throw new \InvalidArgumentException('Mask target expected to be string');
         }
-        if (! is_string($pattern)) {
+        if (!is_string($pattern)) {
             throw new \InvalidArgumentException('Mask pattern expected to be string');
         }
 
