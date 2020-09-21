@@ -24,4 +24,13 @@ class StripperTest extends TestCase
 
         $this->assertEquals(Manny::stripper($target, $config), $good);
     }
+
+    public function test_stripper_3()
+    {
+        $target = 'invoice: AQ&*(*&(* 12345';
+        $config = ['alpha', 'num', 'colon'];
+        $good = 'invoice:AQ12345';
+
+        $this->assertEquals(Manny::stripper($target, $config), $good);
+    }
 }

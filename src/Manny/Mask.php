@@ -71,6 +71,9 @@ class Mask
                     }
                     $output[] = array_shift($nums);
                 } else {
+                    if (count($alphas) == 0 && count($nums) == 0) {
+                        break;
+                    }
                     $output[] = $char;
                 }
             }

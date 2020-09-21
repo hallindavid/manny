@@ -51,4 +51,16 @@ class MaskTest extends TestCase
 
         $this->assertEquals(Manny::mask($target, $config), $good);
     }
+
+    public function test_partial_phone_mask()
+    {
+        //This one is important if someone is doing a phone mask and wants to have an optional extension
+        // Eg. user enters 111-111-1111 and the mask is 111-111-1111 ext. 1111 - if you enter in 111-111-1111 it should return with that.
+
+        $target = '111 111';
+        $config = '111-111-1111';
+        $good = '111-111';
+
+        $this->assertEquals(Manny::mask($target, $config), $good);
+    }
 }
