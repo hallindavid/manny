@@ -3,33 +3,38 @@
 namespace Manny;
 
 /**
- * Mask takes care of masking common fixed-length, alpha-numeric patterns for you.
- * Examples:.
  *
- * //US Social Security Number
- * Manny::mask("123456789", "111-11-1111"); //Outputs: 123-45-6789
- * //Canadian Social Insurance Number
- * Manny::mask("989787676", "111-111-111") //Outputs: "989-787-676"
+ * Clean is a wrapper around preg_replace with easy-to-remember options.
+ * Clean is the new version of the stripper function, which is going to be removed this version.
  *
- * //Canadian Postal Code
- * Manny::mask("K1M1M4", "A1A 1A1"); //Outputs: "K1M 1M4"
+ *    remove all non-digits from string
+ *    Manny::clean("With only 5-10 hours of development, Dave built Manny, saving him atleast 10 seconds per day!", ['num']);
+ *  //Outputs: `51010`
  *
- * //Also great for phone numbers if you don't care about the trailing space - like the extension
- * Manny::mask('8008008000', "(111) 111-1111"); //Outputs: "(800) 800-8000"
+ *  just want the letters, numbers and spaces?
+ *  Manny::stripper("With only 5-10 hours of development, Dave built Manny, saving him atleast 10 seconds per day!",
+ *                    ['num', 'alpha','space']);
+ *  //Outputs: `With only 510 hours of development Dave built Manny saving him atleast 10 seconds per day`
  *
- * Note: this function likely isn't right for you if you have letters or numbers in the formatting.
+ *    Available options are
+ *    alpha - keep the alphabetical characters (case insensitive)
+ *    num - keep the digits (0-9)
+ *    comma - keep commas
+ *    dot - keep periods
+ *    dash - keep dashes/hyphens
+ *    space - keep spaces
  */
-class Mask
+class Clean
 {
     public $target;
     public $mask;
 
     public function __construct($target, $pattern)
     {
-        if (!is_string($target)) {
+        if (! is_string($target)) {
             throw new \InvalidArgumentException('Mask target expected to be string');
         }
-        if (!is_string($pattern)) {
+        if (! is_string($pattern)) {
             throw new \InvalidArgumentException('Mask pattern expected to be string');
         }
 

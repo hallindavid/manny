@@ -1,46 +1,46 @@
 {
-    "name": "hallindavid/manny",
-    "description": "a package of maniulators that hopefully come in useful for those of us who always forget regex when we need it (manny is short for manipulation)",
-    "keywords": [
-        "string", 
-        "manipulation",
-        "trim",
-        "regex",
-        "format",
-        "formatter",
-        "number",
-        "laravel"
-    ],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "David Hallin",
-            "email": "hallin.david@gmail.com",
-            "homepage":"https://davidhallin.com",
-            "role":"Developer"
-        }
-    ],
-    "require": {
-        "php": "^7.2"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.1@dev"
-    },
-    "autoload": {
-        "psr-4": {
-            "Manny\\": "src/Manny"
-        }
-    },
-    "scripts": {
-        "test": "phpunit --testdox"
-    },
-    "extra": {
-        "laravel": {
-            "aliases": {
-                "Manny": "Manny\\Manny"
-            }
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "hallindavid/manny",
+  "description": "a package of maniulators that hopefully come in useful for those of us who always forget regex when we need it (manny is short for manipulation)",
+  "keywords": [
+    "string",
+    "manipulation",
+    "trim",
+    "regex",
+    "format",
+    "formatter",
+    "number",
+    "laravel"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "David Hallin",
+      "email": "hallin.david@gmail.com",
+      "homepage": "https://davidhallin.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.2|^8.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.1@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Manny\\": "src/Manny"
+    }
+  },
+  "scripts": {
+    "test": "phpunit --testdox"
+  },
+  "extra": {
+    "laravel": {
+      "aliases": {
+        "Manny": "Manny\\Manny"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
