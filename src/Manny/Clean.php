@@ -3,7 +3,6 @@
 namespace Manny;
 
 /**
- *
  * Clean is a wrapper around preg_replace with easy-to-remember options.
  * Clean is the new version of the stripper function, which is going to be removed this version.
  *
@@ -31,10 +30,10 @@ class Clean
 
     public function __construct($target, $pattern)
     {
-        if (! is_string($target)) {
+        if (!is_string($target)) {
             throw new \InvalidArgumentException('Mask target expected to be string');
         }
-        if (! is_string($pattern)) {
+        if (!is_string($pattern)) {
             throw new \InvalidArgumentException('Mask pattern expected to be string');
         }
 
