@@ -20,6 +20,11 @@ class Manny
         return (new Stripper($target, $options))->strip();
     }
 
+    public static function keep($target, $options = null)
+    {
+        return (new Stripper($target, $options))->strip();
+    }
+
     public static function crumble($target, $crumbs, $appendExtra = false)
     {
         return (new Crumble($target, $crumbs, $appendExtra))->crumble();
