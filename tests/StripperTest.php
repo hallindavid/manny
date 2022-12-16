@@ -46,7 +46,7 @@ class StripperTest extends TestCase
     public function test_stripper_5()
     {
         $target = '..*public function test_stripper_5(),: void {}';
-        $config = ['alpha', 'num', 'space','underscore', 'parenthesis', 'curly', 'colon'];
+        $config = ['alpha', 'num', 'space', 'underscore', 'parenthesis', 'curly', 'colon'];
         $good = 'public function test_stripper_5(): void {}';
 
         $this->assertEquals(Manny::stripper($target, $config), $good);
