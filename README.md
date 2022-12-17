@@ -141,21 +141,27 @@ a preg_replace abstraction easy-to-remember parameters to reduce frequent googli
 
 **Definition**
 ```php
-    /**
-     * @param string     $text    - the subject of our stripping
-     * @param array|null $options - an array with the return types you'd like
-     *      keys can include the following types
-     *      alpha - keep the alphabetical characters (case insensitive)
-     * 		num - keep the digits (0-9)
-     *  	comma - keep commas
-     *      colon - keep the : character
-     *  	dot - keep periods
-     * 		dash - keep dashes/hyphens
-     *  	space - keep spaces 
-     * 
-     * @return string
-     */
-    function stripper($text, $options = null)
+/**
+ * @param string     $text    - the subject of our stripping
+ * @param array|null $options - an array with the return types you'd like
+ * 
+ *  keys can include the following types:
+ *  alpha - keep the alphabetical characters (case-insensitive)
+ * 	num - keep the digits (0-9)
+ *  comma - keep commas
+ *  colon - keep the : character
+ *  dot - keep periods
+ *  dash - keep dashes/hyphens
+ *  space - keep spaces
+ *  underscore - keep underscores
+ *  pipe - keep pipe characters
+ *  bracket - keep square brackets []
+ *  parenthesis - keep parenthesis ()
+ *  curly - keep curley braces (useful for handlebar syntax ex. {{ thing }} 
+ * 
+ * @return string
+ */
+function stripper($text, $options = null)
 ```
 **Example**
 ```php
@@ -168,7 +174,16 @@ $alt_config = ['num'];
 Manny::stripper($string,$alt_config); 
 //Returns: '51010';
 ```
+### Manny::keep
+an alias for the `Manny::stripper` with the same functionality (since you are really "keeping" all the characters you define in the options, it makes for better code readability)
 
+**Example**
+```php
+$string = 'I only want to "keep" the alpha, num, and spaces for this string!';
+$options = ['alpha', 'num', 'space']
+Manny::keep()
+//Returns: 'I only want to keep the alpha num and spaces for this string'
+```
 ### Manny::crumble
 a preg_replace abstraction easy-to-remember parameters to reduce frequent googling
 

@@ -1,6 +1,6 @@
 {
     "name": "hallindavid/manny",
-    "description": "a package of maniulators that hopefully come in useful for those of us who always forget regex when we need it (manny is short for manipulation)",
+    "description": "a package of manipulators that hopefully come in useful for those of us who always forget regex when we need it (manny is short for manipulation)",
     "keywords": [
         "string", 
         "manipulation",
@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": "^7.2|^8.0"
+        "php": "^7.2|^8"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.1@dev"
